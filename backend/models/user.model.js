@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required: 'Password is required',
-        selected:false
+        select:false
     },
     description:{
         type:String,
@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     profile_url:{
         type:String,
         required: 'Image is required'
+    },
+    user_type:{
+        type:String,
+        required:true,
+        enum: ['0','1']
     },
 
 })
