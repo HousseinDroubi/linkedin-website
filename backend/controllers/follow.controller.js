@@ -37,7 +37,18 @@ const unfollow = async(req,res)=>{
     }
 }
 
+const getFollowingStatus= async(req,res)=>{
+    const {user_id,company_id} = req.params;
+    const follow= await Follow.findOne({user_id:user_id,company_id:company_id}).lean();
+    if(follow){
+        res.json({message:"exist"})
+    }else{
+        res.json({message:"not exist"})
+    }
+}
+
 module.exports = {
     follow,
-    unfollow
+    unfollow,
+    getFollowingStatus
 }
