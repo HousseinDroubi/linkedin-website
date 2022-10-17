@@ -30,9 +30,14 @@ const getMyJobs = async(req,res)=>{
     const jobs= await Job.find({company_id}).lean();
     res.json(jobs);
 }
+const getJob = async(req,res)=>{
+    const job= await Job.findOne({id:req.params}).lean();
+    res.json(job);
+}
 module.exports = {
     createJob,
     getAllJobs,
     getSearchJobs,
-    getMyJobs
+    getMyJobs,
+    getJob
 }
