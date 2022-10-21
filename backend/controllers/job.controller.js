@@ -1,5 +1,6 @@
 const Job = require('../models/job.model');
-
+const Follow = require('../models/follow.model');
+const Notification = require('../models/notification.model');
 const createJob = async(req,res)=>{
     const {title,time,salary,company_id} = req.body;
     try{
@@ -9,7 +10,23 @@ const createJob = async(req,res)=>{
         job.salary=salary;
         job.company_id = company_id;
         await job.save();
+        
+        users_json = await Follow.find({company_id:company_id}).select({ "user_id": 1, "_id": 0}).lean();
+        users_ids =[];
+       
+        users_json.forEach(element => {
+            users_ids.push(element.user_id);
+        });
+
+        for (let i = 0;i<users_ids.length;i++){
+            const notification = new Notification();
+            notification.job_id = job.id;
+            notification.user_id = users_ids[i];
+            
+            await notification.save();
+        }
         res.json({message:"job added"});
+        
     }catch(err){
         res.status(200).json({
             message:err.message
