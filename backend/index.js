@@ -20,6 +20,9 @@ app.use('/following',followRoutes);
 const applicantRoutes = require('./routes/applicant.route');
 app.use('/applicant',applicantRoutes);
 
+const notificationRoutes = require('./routes/notification.route');
+app.use('/notification',notificationRoutes);
+
 app.listen(process.env.PORT,(err)=>{
     if(err)throw err;
     console.log(`server running on port ${process.env.PORT}`);
