@@ -7,6 +7,7 @@ const getUser=async(req,res)=>{
     const user= await User.findOne({id:req.id});
     res.json(user);
 }
+
 const getSomeUsers=async(req,res)=>{
     const job_id = req.params.id;
     const users_applied_json = await Applicant.find({job_id:job_id,status:""}).select({ "user_id": 1, "_id": 0}).lean();
@@ -20,6 +21,7 @@ const getSomeUsers=async(req,res)=>{
 
     res.send(users_applied);
 }
+
 const updateUser = async (req,res) =>{
     
     const {id,username,email,description,image_base64}=req.body;

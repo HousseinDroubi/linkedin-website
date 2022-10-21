@@ -33,6 +33,7 @@ const signup = async(req,res)=>{
         user.profile_url = profile_url;
         user.user_type = user_type;
         await user.save();
+        
         image_decoder.writeFileSync(profile_url, image_base64+"", 'base64', (err)=> {
                 console.log("user added");
               });

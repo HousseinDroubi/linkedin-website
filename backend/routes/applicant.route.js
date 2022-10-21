@@ -8,5 +8,4 @@ router.post('/apply',apply);
 router.put('/reject',reject);
 router.put('/accept',accept);
 
-
 module.exports = router;

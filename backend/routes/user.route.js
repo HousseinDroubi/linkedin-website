@@ -6,4 +6,5 @@ const router = Router();
 router.get('/:id',getUser);
 router.get('/some/:id',getSomeUsers);
 router.put('/',updateUser);
+
 module.exports = router;
